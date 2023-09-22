@@ -1,7 +1,12 @@
 import express from "express";
 import Joi from "joi";
-import { listContacts,
-  getContactById, removeContact, addContact,updateContact } from "../../models/contacts.js";
+import {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+  updateContact,
+} from "../../models/contacts.js";
 const router = express.Router();
 
 const contactSchema = Joi.object({
@@ -32,7 +37,9 @@ router.get("/:id", async (req, res, next) => {
     const contactId = req.params.id;
     const contact = await getContactById(contactId);
     if (!contact) {
-      return res.json({ message: "Not Found", status: "error", code: 404 });
+      return res
+        .status(404)
+        .json({ message: "Not Found", status: "error", code: 404 });
     }
     res.json({
       message: "contact found",
@@ -40,8 +47,8 @@ router.get("/:id", async (req, res, next) => {
       code: 200,
       data: contact,
     });
-  } catch {
-    console.error("Error while reading contacts");
+  } catch (err) {
+    console.error("Error while reading contacts", err);
     next(err);
   }
 });
@@ -50,10 +57,6 @@ router.post("/", async (req, res, next) => {
   const body = req.body;
   try {
     const { error } = contactSchema.validate(body);
-
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
     if (error) {
       return res.status(400).json({
         message: `missing required field`,
@@ -112,5 +115,20 @@ router.put("/:id", async (req, res, next) => {
         code: 404,
       });
     }
+
+    const updatedContact = await updateContact(id, body);
+    console.log("Contact updated:", updatedContact);
+
+    res.json({
+      message: "Contact updated",
+      status: "success",
+      code: 200,
+      data: updatedContact,
+    });
+  } catch (err) {
+    console.error("Error while updating contacts:", err);
+    next(err);
+  }
+});
 
 export default router;

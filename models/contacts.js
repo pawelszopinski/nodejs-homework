@@ -1,5 +1,5 @@
 import path from "path";
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 
 const contactsPath = path.join("models", "contacts.json");
 export const listContacts = async () => {
@@ -44,8 +44,6 @@ export const removeContact = async (contactId) => {
     throw err;
   }
 };
-
-
 
 export const addContact = async (body) => {
   try {
