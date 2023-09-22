@@ -1,6 +1,17 @@
-// const fs = require('fs/promises')
+import path from "path"
+import { readFile } from "fs/promises";
 
-const listContacts = async () => {};
+const contactsPath = path.join("models", "contacts.json" )
+export const listContacts = async () => {
+try {
+  const data = await readFile(contactsPath)
+  const contacts = JSON.parse(data)
+  return contacts
+} catch (error) {
+  console.error("Can't read contacts properly")
+  throw error
+}
+};
 
 const getContactById = async (contactId) => {};
 

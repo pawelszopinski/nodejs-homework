@@ -1,9 +1,20 @@
 const express = require("express");
-
+import { listContacts } from "../../models/contacts";
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
-  res.json({ message: "template message" });
+  try {
+    const contacts = await listContacts();
+    res.json({
+      message: "ok",
+      status: "success",
+      code: 200,
+      data: contacts
+    })
+  } catch (error) {
+    console.error("Can't read your contacts (routing)")
+    next(error)
+  }
 });
 
 router.get("/:contactId", async (req, res, next) => {
@@ -22,4 +33,4 @@ router.put("/:contactId", async (req, res, next) => {
   res.json({ message: "template message" });
 });
 
-module.exports = router;
+export default router
