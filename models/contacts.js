@@ -13,7 +13,19 @@ export const listContacts = async () => {
   }
 };
 
-export const getContactById = async (contactId) => {};
+export const getContactById = async (contactId) => {
+  try {
+    const contacts = await listContacts();
+    const contact = contacts.find((contact) => contact.id === contactId);
+    if (!contact) {
+      return false;
+    }
+    return contact;
+  } catch (err) {
+    console.error("Error while reading contacts by id");
+    throw err;
+  }
+};
 
 export const removeContact = async (contactId) => {};
 
