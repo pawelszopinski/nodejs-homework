@@ -1,5 +1,5 @@
-const express = require("express");
-import { listContacts } from "../../models/contacts";
+import express from "express";
+import { listContacts } from "../../models/contacts.js";
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -9,11 +9,11 @@ router.get("/", async (req, res, next) => {
       message: "ok",
       status: "success",
       code: 200,
-      data: contacts
-    })
+      data: contacts,
+    });
   } catch (error) {
-    console.error("Can't read your contacts (routing)")
-    next(error)
+    console.error("Can't read your contacts (routing)");
+    next(error);
   }
 });
 
@@ -33,4 +33,4 @@ router.put("/:contactId", async (req, res, next) => {
   res.json({ message: "template message" });
 });
 
-export default router
+export default router;
