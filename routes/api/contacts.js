@@ -9,12 +9,18 @@ import {
 } from "../../models/contacts.js";
 const router = express.Router();
 
-const contactSchema = Joi.object({
+const contactSchemaPost = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   phone: Joi.string()
     .pattern(new RegExp("^[0-9]{3}-[0-9]{3}-[0-9]{4}$"))
     .required(),
+});
+const contactSchemaPut = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().email(),
+  phone: Joi.string()
+    .pattern(new RegExp("^[0-9]{3}-[0-9]{3}-[0-9]{4}$")),
 });
 
 router.get("/", async (req, res, next) => {
@@ -56,7 +62,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   const body = req.body;
   try {
-    const { error } = contactSchema.validate(body);
+    const { error } = contactSchemaPost.validate(body);
     if (error) {
       return res.status(400).json({
         message: 'Validation error',
@@ -97,7 +103,7 @@ router.put("/:id", async (req, res, next) => {
   const body = req.body;
 
   try {
-    const { error } = contactSchema.validate(body);
+    const { error } = contactSchemaPut.validate(body);
 
     if (error) {
       return res.status(400).json({

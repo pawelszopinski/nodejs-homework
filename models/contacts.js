@@ -68,24 +68,20 @@ export const addContact = async (body) => {
 export const updateContact = async (contactId, body) => {
   try {
     const contacts = await listContacts();
-
     const contactIndex = contacts.findIndex(
-      (contact) => contact.id === contactId
+      (contact) => contact.id == contactId
     );
 
     if (contactIndex === -1) {
-      throw new Error("Contact not found");
+      console.error("Contact not found for update");
+      return false;
     }
 
-    const updatedContact = {
-      ...contacts[contactIndex],
-      ...body,
-    };
-
+    const updatedContact = { ...contacts[contactIndex], id: contactId.toString(), ...body };
     contacts[contactIndex] = updatedContact;
 
     await writeFile(contactsPath, JSON.stringify(contacts));
-    console.log("Contact updated:", updatedContact);
+
     return updatedContact;
   } catch (err) {
     console.error("Error while updating contacts:", err);
