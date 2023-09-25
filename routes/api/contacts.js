@@ -59,9 +59,10 @@ router.post("/", async (req, res, next) => {
     const { error } = contactSchema.validate(body);
     if (error) {
       return res.status(400).json({
-        message: `missing required field`,
-        status: "error",
+        message: 'Validation error',
+        status: 'error',
         code: 400,
+        details: error.details,
       });
     }
     const contact = await addContact(body);
