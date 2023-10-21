@@ -32,7 +32,9 @@ app.use((err, _, res, __) => {
 });
 
 const PORT = process.env.PORT || 3000;
-const uriDb = process.env.DB_HOST;
+const password = encodeURIComponent(process.env.PASSWORD);
+const user = process.env.USER;
+const uriDb = `mongodb+srv://${user}:${password}@goit.la4crhx.mongodb.net/?retryWrites=true&w=majority`;
 
 const connection = async () => {
   try {
