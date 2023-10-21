@@ -1,19 +1,90 @@
-// const fs = require('fs/promises')
+import path from "path";
+import { readFile, writeFile } from "fs/promises";
 
-const listContacts = async () => {}
+const contactsPath = path.join("models", "contacts.json");
+export const listContacts = async () => {
+  try {
+    const data = await readFile(contactsPath);
+    const contacts = JSON.parse(data);
+    return contacts;
+  } catch (error) {
+    console.error("Can't read contacts properly");
+    throw error;
+  }
+};
 
-const getContactById = async (contactId) => {}
+export const getContactById = async (contactId) => {
+  try {
+    const contacts = await listContacts();
+    const contact = contacts.find((contact) => contact.id === contactId);
+    if (!contact) {
+      return false;
+    }
+    return contact;
+  } catch (err) {
+    console.error("Error while reading contacts by id");
+    throw err;
+  }
+};
 
-const removeContact = async (contactId) => {}
+export const removeContact = async (contactId) => {
+  try {
+    const contacts = await listContacts();
+    const contactIndex = contacts.findIndex(
+      (contact) => contact.id == contactId
+    );
+    if (contactIndex === -1) {
+      return false;
+    }
+    contacts.splice(contactIndex, 1);
+    await writeFile(contactsPath, JSON.stringify(contacts));
+    return true;
+  } catch (err) {
+    console.error("Error while deleting contacts by id:", err);
+    throw err;
+  }
+};
 
-const addContact = async (body) => {}
+export const addContact = async (body) => {
+  try {
+    const contacts = await listContacts();
+    const { email, phone, name } = body;
+    const newContact = {
+      id: Date.now().toString(),
+      name,
+      email,
+      phone,
+    };
+    contacts.push(newContact);
+    await writeFile(contactsPath, JSON.stringify(contacts));
 
-const updateContact = async (contactId, body) => {}
+    return newContact;
+  } catch (err) {
+    console.error("Error while adding contacts");
+    throw err;
+  }
+};
 
-module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-  updateContact,
-}
+export const updateContact = async (contactId, body) => {
+  try {
+    const contacts = await listContacts();
+    const contactIndex = contacts.findIndex(
+      (contact) => contact.id == contactId
+    );
+
+    if (contactIndex === -1) {
+      console.error("Contact not found for update");
+      return false;
+    }
+
+    const updatedContact = { ...contacts[contactIndex], id: contactId.toString(), ...body };
+    contacts[contactIndex] = updatedContact;
+
+    await writeFile(contactsPath, JSON.stringify(contacts));
+
+    return updatedContact;
+  } catch (err) {
+    console.error("Error while updating contacts:", err);
+    throw err;
+  }
+};
