@@ -34,11 +34,14 @@ app.use((err, _, res, __) => {
 const PORT = process.env.PORT || 3000;
 const password = encodeURIComponent(process.env.PASSWORD);
 const user = process.env.USER;
-const uriDb = `mongodb+srv://${user}:${password}@goit.la4crhx.mongodb.net/?retryWrites=true&w=majority`;
+const hostDB = process.env.HOST;
+const dbName = process.env.DB_NAME;
+
+const uriDb = `mongodb+srv://${user}:${password}@${hostDB}/?retryWrites=true&w=majority`;
 
 const connection = async () => {
   try {
-    await mongoose.connect(uriDb, { dbName: "db-contacts" });
+    await mongoose.connect(uriDb, { dbName });
     console.log("Database connection successful");
 
     app.listen(PORT, () => {

@@ -1,7 +1,10 @@
 ## Contact Database Using Node.js and MongoDB
 
-[How to run](#how-to-run-the-project), [How to run for beginners ](#how-to-run-the-project-for-beginners), [Usage examples](#usage)
 A simple application for storing and displaying contacts using Node.js and MongoDB.
+
+[How to run](#how-to-run-the-project), [How to run for beginners ](#how-to-run-the-project-for-beginners),
+[Config with .env](#configuration-with-env),
+[Usage examples](#usage)
 
 ## Setup
 
@@ -12,7 +15,7 @@ To run this project locally, follow these steps:
 2. Install [MongoDB](https://www.mongodb.com/try/download/community) if you haven't already.
 
 3. Clone this project from the GitHub repository:
-   [HTTP](https://github.com/pawelszopinski/nodejs-homework.git)
+   [HTTP](https://github.com/pawelszopinski/nodejs-homework.git),
    [SSH](git@github.com:pawelszopinski/nodejs-homework.git)
 
 4. Navigate to the project directory and install the dependencies:
@@ -22,8 +25,21 @@ To run this project locally, follow these steps:
 
 To run the project, follow these steps:
 
-1.Start the Node.js server by entering the following command in the project directory:
-  npm start
+1. Start the Node.js server by entering the following command in the project directory:
+   npm start
+2. ## Configuration with .env
+
+To get started, you can create your own `.env` file. You can use the provided `.env.example` as a template:
+
+Here is an example of what your `.env` file might look like:
+
+```plaintext
+PORT=3000
+USER=your_username
+PASSWORD=your_password
+hostDB=your_database_host
+dbName=your_database_name
+```
 
 ## How to Run the Project for beginners
 
@@ -59,25 +75,25 @@ These are examples of how to interact with the contact database using various HT
 
 ### Retrieve All Contacts (GET)
 
-<!-- To retrieve a list of all contacts, use the following endpoint: -->
+To retrieve a list of all contacts, use the following endpoint:
 
 GET /api/contacts
 [Back to list of methods](#usage-examples)
 
 ### Retrieve a Contact by ID (GET)
 
-<!-- To retrieve a single contact by its ID, use the following endpoint: -->
+To retrieve a single contact by its ID, use the following endpoint:
 
 GET /api/contacts/{contactId}
 [Back to list of methods](#usage-examples)
 
 ### Create a New Contact (POST)
 
-<!-- To create a new contact, use the following endpoint with a JSON payload containing the contact details: -->
+To create a new contact, use the following endpoint with a JSON payload containing the contact details:
 
 POST /api/contacts
 
-<!-- Example JSON payload: -->
+Example JSON payload:
 
 {
 "name": "John Doe",
@@ -88,11 +104,11 @@ POST /api/contacts
 
 ### Update a Contact (PUT)
 
-<!-- To update an existing contact, use the following endpoint with the contact's ID and a JSON payload containing the updated contact details: -->
+To update an existing contact, use the following endpoint with the contact's ID and a JSON payload containing the updated contact details:
 
 PUT /api/contacts/{contactId}
 
-<!-- Example JSON payload: -->
+Example JSON payload:
 
 {
 "name": "Updated Name",
@@ -103,11 +119,11 @@ PUT /api/contacts/{contactId}
 
 ### Update Contact's Favorite Status (PATCH)
 
-<!-- To update a contact's favorite status, use the following endpoint with the contact's ID and a JSON payload specifying the new favorite status: -->
+To update a contact's favorite status, use the following endpoint with the contact's ID and a JSON payload specifying the new favorite status:
 
 PATCH /api/contacts/{contactId}/favorite
 
-<!-- Example JSON payload to set as favorite: -->
+Example JSON payload to set as favorite:
 
 {
 "favorite": true
@@ -116,7 +132,7 @@ PATCH /api/contacts/{contactId}/favorite
 
 ### Delete a Contact (DELETE)
 
-<!-- To delete a contact, use the following endpoint with the contact's ID: -->
+To delete a contact, use the following endpoint with the contact's ID:
 
 DELETE /api/contacts/{contactId}
 [Back to list of methods](#usage-examples)
