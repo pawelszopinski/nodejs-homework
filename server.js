@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-import routerAPI from "./api/index.js";
+import routerAPI from "./routing/index.js";
 app.use("/api/contacts", routerAPI);
 
 app.use((_, res, __) => {

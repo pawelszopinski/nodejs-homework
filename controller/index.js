@@ -26,14 +26,13 @@ export const getById = async (req, res, next) => {
         code: 200,
         data: { contact: result },
       });
-    } else {
-      res.status(404).json({
-        status: "error",
-        code: 404,
-        message: `Not found contacts id: ${contactId}`,
-        data: "Not Found",
-      });
     }
+    return res.status(404).json({
+      status: "error",
+      code: 404,
+      message: `Not found contacts id: ${contactId}`,
+      data: "Not Found",
+    });
   } catch (err) {
     console.error(err);
     next(err);
