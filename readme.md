@@ -1,31 +1,15 @@
-## GoIT Node.js Course Template Homework
+# Contact Database Using Node.js and MongoDB
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+A simple application for storing and displaying contacts using Node.js and MongoDB.
 
-Додайте ментора до колаборації
+## Installation
 
-Для кожної домашньої роботи створюйте свою гілку.
+To run this project locally, follow these steps:
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+1. Install [Node.js](https://nodejs.org/) LTS version if you haven't already.
 
-Кожна нова гілка для др повинна робитися з master
+2. Install [MongoDB](https://www.mongodb.com/try/download/community) if you haven't already.
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
-
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
-
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
-
-### Команди:
-
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+3. Clone this project from the GitHub repository:
+   [HTTP](https://github.com/pawelszopinski/nodejs-homework.git)
+   [SSH](https://github.com/pawelszopinski/nodejs-homework.git)
