@@ -1,10 +1,10 @@
 import Joi from "joi";
 import jwt from "jsonwebtoken";
-// import passport from "passport";
+import passport from "passport";
 
 import { User } from "../service/schemas/users.js";
 
-const secret = process.env.SECRET;
+const secret = encodeURIComponent(process.env.SECRET);
 
 const addUserSchema = Joi.object({
   password: Joi.string()
