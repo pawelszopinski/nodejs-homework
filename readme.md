@@ -47,8 +47,9 @@ SECRET= your_another_password
 
 1. Web Browser: You can use a web browser to make requests to your API. Enter the URL in your browser, e.g., [http://localhost:3000/api/contacts], to send a GET request and view the response.
 
-2. curl: It's a command-line tool that allows you to make HTTP requests. You can use curl to test various HTTP methods. For example (GET request):
-   `curl http://localhost:3000/api/contacts` 
+2. curl: It's a command-line tool that allows you to make HTTP requests. You can use curl to test various HTTP methods. For example (GET request)
+
+   `curl http://localhost:3000/api/contacts`
 
 3. JavaScript/Node.js: You can write a simple JavaScript or Node.js script that uses the axios or node-fetch module to make HTTP requests and test your API. Here's an example using Node.js with axios:
 
