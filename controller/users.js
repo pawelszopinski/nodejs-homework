@@ -2,7 +2,7 @@ import Joi from "joi";
 import jwt from "jsonwebtoken";
 import passport from "passport";
 
-import { User } from "../service/schemas/users.js";
+import { User } from "../models/users.js";
 
 const secret = encodeURIComponent(process.env.SECRET);
 
