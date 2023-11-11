@@ -1,22 +1,24 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-
+import "./config/config-passport.js";
 import "dotenv/config";
+import contactsRouter from "./routing/contacts.js";
+import usersRouter from "./routing/users.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-import routerAPI from "./routing/index.js";
-app.use("/api/contacts", routerAPI);
+app.use("/api/contacts", contactsRouter);
+app.use("/api/users", usersRouter);
 
 app.use((_, res, __) => {
   res.json({
     status: "error",
     code: 404,
-    message: "Use api on routes: /api/contacts",
+    message: "Use api on routes: /api/contacts or /api/users",
     data: "Not found",
   });
 });
