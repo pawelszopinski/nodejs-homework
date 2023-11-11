@@ -185,18 +185,8 @@ export const current = (req, res) => {
           message: `Unauthorized`,
         },
       });
-    } else {
-      return res.json({
-        status: "success",
-        code: 200,
-        data: {
-          message: `Authorization successful`,
-          email,
-          subscription,
-        },
-      });
     }
-  } catch (error) {
+    }  catch (error) {
     console.error(error);
   }
 };

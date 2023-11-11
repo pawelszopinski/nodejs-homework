@@ -1,20 +1,6 @@
 import * as service from "../service/index.js";
 
-export const get = async (req, res, next) => {
-  try {
-    const results = await service.listContacts();
-    res.json({
-      status: "success",
-      code: 200,
-      data: {
-        contacts: results,
-      },
-    });
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-};
+
 
 export const getById = async (req, res, next) => {
   const { contactId } = req.params;
