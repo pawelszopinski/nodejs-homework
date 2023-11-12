@@ -1,3 +1,5 @@
+import gravatar from "gravatar";
+
 import { User } from "../../models/users.js";
 
 export const signup = async (req, res, next) => {
@@ -15,7 +17,8 @@ export const signup = async (req, res, next) => {
   }
 
   try {
-    const newUser = new User({ email, subscription });
+    const avatarURL = gravatar.url(email, { s: "100", d: "retro" });
+    const newUser = new User({ email, subscription, avatarURL });
     newUser.setPassword(password);
     await newUser.save();
     res.status(201).json({
@@ -25,6 +28,7 @@ export const signup = async (req, res, next) => {
         user: {
           subscription: newUser.subscription || "starter",
           message: "Registration successful",
+          avatarURL: newUser.avatarURL,
         },
       },
     });
