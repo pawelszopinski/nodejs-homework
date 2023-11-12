@@ -1,11 +1,19 @@
 import express from "express";
 const router = express.Router();
-import * as ctrlUser from "../controller/users.js";
+import { bodyValidate } from "../middlewares/validator.js";
+import { addUserSchema } from "../controller/users.js";
+import { userSchema } from "../models/users.js";
+import { signup } from "../controllers/users/register.js";
+import { getUsers } from "../controllers/users/getUsers.js";
+import { login } from "../controllers/users/logIn.js";
+import { logout } from "../controllers/users/logOut.js";
+import { current } from "../controllers/users/currentuser.js";
+import { auth } from "../controller/users.js";
 
-router.get("/", ctrlUser.getUsers);
-router.post("/signup", ctrlUser.signup);
-router.post("/login", ctrlUser.login);
-router.get("/logout", ctrlUser.auth, ctrlUser.logout);
-router.get("/current", ctrlUser.auth, ctrlUser.current);
+router.get("/", getUsers);
+router.post("/signup",bodyValidate(addUserSchema) ,signup);
+router.post("/login", login);
+router.get("/logout", auth, logout);
+router.get("/current", auth, current);
 
 export default router;

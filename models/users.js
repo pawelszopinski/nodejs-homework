@@ -3,7 +3,7 @@ import bCrypt from "bcrypt";
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+export const userSchema = new Schema({
   password: {
     type: String,
     required: [true, "Password is required"],

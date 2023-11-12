@@ -1,9 +1,10 @@
 import express from "express";
-import * as ctrlContact from "../controller/contacts.js";
 import { create } from "../controllers/contacts/createContact.js";
 import { get } from "../controllers/contacts/indexContacts.js";
 import { getById } from "../controllers/contacts/showContact.js";
-import * as updateStatusJs from "../controllers/contacts/updateStatus.js";
+import {update} from "../controllers/contacts/updateContact.js"
+import {updateStatus} from "../controllers/contacts/updateStatus.js";
+import {remove} from "../controllers/contacts/deleteContact.js"
 const router = express.Router();
 
 router.get("/", get);
@@ -12,10 +13,10 @@ router.get("/:contactId", getById);
 
 router.post("/", create);
 
-router.put("/:contactId", ctrlContact.update);
+router.put("/:contactId", update);
 
-router.patch("/:contactId/favorite", updateStatusJs.updateStatus);
+router.patch("/:contactId/favorite", updateStatus);
 
-router.delete("/:contactId", ctrlContact.remove);
+router.delete("/:contactId", remove);
 
 export default router;
