@@ -5,7 +5,9 @@ import "./config/config-passport.js";
 import "dotenv/config";
 import contactsRouter from "./routing/contacts.js";
 import usersRouter from "./routing/users.js";
+import fs from "fs/promises";
 
+import { uploadDir } from "./config/config-multer.js"; 
 const app = express();
 
 app.use(express.json());
@@ -14,11 +16,13 @@ app.use(cors());
 app.use("/api/contacts", contactsRouter);
 app.use("/api/users", usersRouter);
 
+app.use(express.static("public"));
+
 app.use((_, res, __) => {
   res.json({
     status: "error",
     code: 404,
-    message: "Use api on routes: /api/contacts or /api/users",
+    message: "404 not found",
     data: "Not found",
   });
 });
@@ -41,12 +45,28 @@ const dbName = process.env.DB_NAME;
 
 const uriDb = `mongodb+srv://${user}:${password}@${hostDB}/?retryWrites=true&w=majority`;
 
+const isAccessible = async (path) => {
+  try {
+    await fs.access(path);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const createFolderIsNotExist = async (folder) => {
+  if (!(await isAccessible(folder))) {
+    await fs.mkdir(folder);
+  }
+};
+
 const connection = async () => {
   try {
     await mongoose.connect(uriDb, { dbName });
     console.log("Database connection successful");
 
     app.listen(PORT, () => {
+      createFolderIsNotExist(uploadDir);
       console.log(`Server running. Use our API on port: ${PORT}`);
     });
   } catch (err) {
