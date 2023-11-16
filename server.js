@@ -7,7 +7,7 @@ import contactsRouter from "./routing/contacts.js";
 import usersRouter from "./routing/users.js";
 import fs from "fs/promises";
 
-import { uploadDir } from "./config/config-multer.js"; 
+import { uploadDir } from "./config/config-multer.js";
 const app = express();
 
 app.use(express.json());
@@ -42,7 +42,6 @@ const password = encodeURIComponent(process.env.PASSWORD);
 const user = process.env.USER;
 const hostDB = process.env.HOST;
 const dbName = process.env.DB_NAME;
-
 const uriDb = `mongodb+srv://${user}:${password}@${hostDB}/?retryWrites=true&w=majority`;
 
 const isAccessible = async (path) => {

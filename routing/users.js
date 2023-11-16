@@ -10,6 +10,7 @@ import { current } from "../controllers/users/currentuser.js";
 import { auth } from "../controller/users.js";
 import { avatar } from "../controllers/users/avatar.js";
 import { upload } from "../config/config-multer.js";
+import { verifyUser } from "../controllers/users/verification.js";
 
 router.get("/", getUsers);
 router.post("/signup", bodyValidate(addUserSchema), signup);
@@ -22,5 +23,6 @@ router.patch(
   upload.single("avatar"),
   avatar
 );
+router.get('/verify/:verificationToken', verifyUser);
 
 export default router;
