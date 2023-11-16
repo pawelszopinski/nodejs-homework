@@ -11,18 +11,15 @@ import { auth } from "../controller/users.js";
 import { avatar } from "../controllers/users/avatar.js";
 import { upload } from "../config/config-multer.js";
 import { verifyUser } from "../controllers/users/verification.js";
+import { resendVerificationEmail } from "../controllers/mail/resendMail.js";
 
 router.get("/", getUsers);
 router.post("/signup", bodyValidate(addUserSchema), signup);
 router.post("/login", login);
 router.get("/logout", auth, logout);
 router.get("/current", auth, current);
-router.patch(
-  "/avatars",
-  auth,
-  upload.single("avatar"),
-  avatar
-);
-router.get('/verify/:verificationToken', verifyUser);
+router.patch("/avatars", auth, upload.single("avatar"), avatar);
+router.get("/verify/:verificationToken", verifyUser);
+router.post("/verify", resendVerificationEmail);
 
 export default router;
