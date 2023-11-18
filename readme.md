@@ -2,9 +2,15 @@
 
 A simple application for storing and displaying contacts using Node.js and MongoDB. You can register/login with your email/password.
 
-[How to run](#how-to-run-the-project), [How to run for beginners](#how-to-run-the-project-for-beginners),
+[How to run](#how-to-run-the-project),
+
+[How to run for beginners](#how-to-run-the-project-for-beginners),
+
 [Config with .env](#configuration-with-env),
-[Usage examples](#usage)
+
+[Usage examples](#usage),
+
+[Docker Setup](#docker-setup)
 
 ## Setup
 
@@ -68,17 +74,24 @@ axios.get('http://localhost:3000/api/contacts')
 ## Usage
 
 [Register/Login](#registerlogin)
+
 [List of contacts](#retrieve-all-contacts-get)
+
 [Contact by ID](#retrieve-a-contact-by-id-get)
+
 [Create a new contact](#create-a-new-contact-post)
+
 [Update a contact](#update-a-contact-put)
+
 [Update contact's Favorite Status](#update-contacts-favorite-status-patch)
+
 [Delete a contact](#delete-a-contact-delete)
 
 ### Register/Login
 
-[http://localhost:3000/api/users/signup]
-[http://localhost:3000/api/users/login]
+[Register]((http://localhost:3000/api/users/signup))
+
+[Login]((http://localhost:3000/api/users/login))
 
 Place email and password in the req body.
 
@@ -147,4 +160,34 @@ To delete a contact, use the following endpoint with the contact's ID:
 
 DELETE /api/contacts/{contactId}
 [Back to list of methods](#usage)
+[Back to the top](#contact-database-using-nodejs-and-mongodb)
+
+## Docker Setup
+
+This project can be easily containerized using Docker. Follow the steps below to run the application in a Docker container.
+
+### Prerequisites
+
+Make sure you have Docker installed on your machine. If you don't have it installed, you can download it from [Docker's official website](https://www.docker.com/get-started).
+
+### Build Docker Image
+
+Navigate to the project directory in your terminal and run the following command to build the Docker image:
+
+```bash
+docker build -t nodejs-homework-server 
+
+```
+
+### Run Docker Container
+
+After successfully building the Docker image, you can run the Docker container using the following command:
+
+```bash
+docker-compose up
+
+```
+
+This command uses the docker-compose.yml file, which should be present in your project directory. If it's not, make sure to create one with the necessary configurations.
+
 [Back to the top](#contact-database-using-nodejs-and-mongodb)

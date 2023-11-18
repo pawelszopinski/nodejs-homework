@@ -42,6 +42,7 @@ const password = encodeURIComponent(process.env.PASSWORD);
 const user = process.env.USER;
 const hostDB = process.env.HOST;
 const dbName = process.env.DB_NAME;
+// const uriDb = `mongodb://${user}:${password}@mongo:27017/${dbName}`; To ścieżka dla kontenera
 const uriDb = `mongodb+srv://${user}:${password}@${hostDB}/?retryWrites=true&w=majority`;
 
 const isAccessible = async (path) => {
